@@ -43,9 +43,9 @@ const selectCity = () => {
 }
 
 const fetchWeather = (city) => {
-    console.log(city)
+    // console.log(city)
     const url = `http://api.weatherapi.com/v1/forecast.json?key=30c0377bc9ea487780553312233112&q=${city.lat},${city.lon}&days=3&aqi=yes`;
-
+    clearDiv()
     const apiCall = async () => {
         try {
             const response = await fetch(url);
@@ -59,14 +59,20 @@ const fetchWeather = (city) => {
     apiCall()
 }
 
-const clearDiv = (clName) => {
-    console.log(typeof(clName), clName)
-    let elem = document.getElementsByClassName(clName)[0]
-    elem.innerHTML += ""
+const clearDiv = () => {
+    // console.log(typeof(clName), clName)
+    // let elem = document.getElementById("weather")
+    // elem.innerHTML += ""
+    const myNode = document.getElementById("weather");
+    while (myNode.firstChild) {
+      myNode.removeChild(myNode.lastChild);
+    }
 }
 
+
+
 const displayWeather = (data) => {
-    console.log(data)
+    // console.log(data)
     let weatherHTML = `
     <div class="current-weather-container">
         <h2 id="location">${data.location.name}</h2>
