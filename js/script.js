@@ -44,7 +44,7 @@ const selectCity = () => {
 
 const fetchWeather = (city) => {
     // console.log(city)
-    const url = `http://api.weatherapi.com/v1/forecast.json?key=30c0377bc9ea487780553312233112&q=${city.lat},${city.lon}&days=3&aqi=yes`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=30c0377bc9ea487780553312233112&q=${city.lat},${city.lon}&days=3&aqi=yes`;
     clearDiv()
     const apiCall = async () => {
         try {
