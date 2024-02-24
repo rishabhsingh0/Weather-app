@@ -11,8 +11,27 @@ const cities = [
         lat: 19.07,
         lon: 72.87,
         value: "mumbai"
+    },
+    {
+        name: "Kolkata",
+        lat: 22.57,
+        lon: 88.36,
+        value: "kolkata"
+    },
+    {
+        name: "Chennai",
+        lat: 13.08,
+        lon: 80.27,
+        value: "chennai"
+    },
+    {
+        name: "Bengaluru",
+        lat: 12.97,
+        lon: 77.59,
+        value: "bengaluru"
     }
 ]
+// variables
 let city
 const date1 = new Date()
 const date = date1.getDate()
@@ -36,41 +55,35 @@ const airQuality = (aqi) => {
     }
 }
 
+// function to determine city selected by user
 const selectCity = () => {
     let userCity = document.getElementById("city").value
     city = cities.find(({ value }) => value === userCity)
     fetchWeather(city)
 }
 
-const fetchWeather = (city) => {
-    // console.log(city)
+// function to fetch weather data for user selected city 
+const fetchWeather = async(city) => {
     const url = `https://api.weatherapi.com/v1/forecast.json?key=30c0377bc9ea487780553312233112&q=${city.lat},${city.lon}&days=3&aqi=yes`;
     clearDiv()
-    const apiCall = async () => {
-        try {
-            const response = await fetch(url);
-            const result = await response.json();
-            // console.log(result);
-            displayWeather(result)
-        } catch (error) {
-            console.error(error);
-        }
+    try {
+        const response = await fetch(url);
+        const result = await response.json();
+        displayWeather(result)
+    } catch (error) {
+        console.error(error);
     }
-    apiCall()
 }
 
+// function to clear any previous results
 const clearDiv = () => {
-    // console.log(typeof(clName), clName)
-    // let elem = document.getElementById("weather")
-    // elem.innerHTML += ""
     const myNode = document.getElementById("weather");
     while (myNode.firstChild) {
       myNode.removeChild(myNode.lastChild);
     }
 }
 
-
-
+// function to display weather results
 const displayWeather = (data) => {
     // console.log(data)
     let weatherHTML = `
